@@ -1,0 +1,6 @@
+name: Hades
+version: 0.0.1
+author: okexox
+main: me.okexox.hades.Main
+api-version: 1.8
+depend: [ProtocolLib]
