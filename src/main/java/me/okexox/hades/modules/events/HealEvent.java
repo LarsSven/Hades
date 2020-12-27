@@ -1,6 +1,10 @@
 package me.okexox.hades.modules.events;
 
+import me.okexox.hades.Main;
+import me.okexox.hades.modules.base.Detection;
+import me.okexox.hades.modules.base.interfaces.CheckCombat;
 import me.okexox.hades.modules.base.interfaces.CheckHeal;
+import me.okexox.hades.modules.base.interfaces.CheckMove;
 import me.okexox.hades.modules.exploits.FastHeal;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -17,7 +21,11 @@ public class HealEvent implements Listener {
     }
 
     private void addChecks() {
-        checks.add(new FastHeal());
+        for(Detection check : Main.data.getChecks()) {
+            if(CheckHeal.class.isAssignableFrom(check.getClass())) {
+                checks.add((CheckHeal) check);
+            }
+        }
     }
 
     @EventHandler

@@ -1,9 +1,12 @@
 package me.okexox.hades.modules.events;
 
+import me.okexox.hades.Main;
 import me.okexox.hades.data.DataList;
 import me.okexox.hades.data.PlayerData;
 import me.okexox.hades.modules.base.Detection;
+import me.okexox.hades.modules.base.interfaces.CheckBlockBreak;
 import me.okexox.hades.modules.base.interfaces.CheckCombat;
+import me.okexox.hades.modules.base.interfaces.CheckHeal;
 import me.okexox.hades.modules.combat.NoSwing;
 import me.okexox.hades.modules.combat.WallHit;
 import me.okexox.hades.modules.exploits.SelfDamage;
@@ -23,12 +26,11 @@ public class CombatEvent implements Listener {
     }
 
     private void addChecks() {
-        //Combat
-        checks.add(new WallHit());
-        checks.add(new NoSwing());
-
-        //Exploits
-        checks.add(new SelfDamage());
+        for(Detection check : Main.data.getChecks()) {
+            if(CheckCombat.class.isAssignableFrom(check.getClass())) {
+                checks.add((CheckCombat) check);
+            }
+        }
     }
 
     @EventHandler

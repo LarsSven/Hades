@@ -1,7 +1,10 @@
 package me.okexox.hades.modules.events;
 
+import me.okexox.hades.Main;
 import me.okexox.hades.data.PlayerData;
+import me.okexox.hades.modules.base.Detection;
 import me.okexox.hades.modules.base.interfaces.CheckBlockBreak;
+import me.okexox.hades.modules.base.interfaces.CheckCombat;
 import me.okexox.hades.modules.exploits.Nuker;
 import org.bukkit.Location;
 import org.bukkit.event.EventHandler;
@@ -19,7 +22,11 @@ public class BreakBlockEvent implements Listener {
     }
 
     private void addChecks() {
-        checks.add(new Nuker());
+        for(Detection check : Main.data.getChecks()) {
+            if(CheckBlockBreak.class.isAssignableFrom(check.getClass())) {
+                checks.add((CheckBlockBreak) check);
+            }
+        }
     }
 
     @EventHandler

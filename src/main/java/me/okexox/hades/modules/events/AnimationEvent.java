@@ -2,7 +2,6 @@ package me.okexox.hades.modules.events;
 
 import me.okexox.hades.data.DataList;
 import me.okexox.hades.data.PlayerData;
-import me.okexox.hades.modules.base.Detection;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerAnimationEvent;

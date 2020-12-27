@@ -1,8 +1,10 @@
 package me.okexox.hades.modules.events;
 
+import me.okexox.hades.Main;
 import me.okexox.hades.data.DataList;
 import me.okexox.hades.data.PlayerData;
 import me.okexox.hades.modules.base.Detection;
+import me.okexox.hades.modules.base.interfaces.CheckHeal;
 import me.okexox.hades.modules.base.interfaces.CheckMove;
 import me.okexox.hades.modules.integrity.OnGroundIntegrity;
 import me.okexox.hades.modules.integrity.PitchIntegrity;
@@ -37,19 +39,11 @@ public class MoveEvent implements Listener {
     }
 
     private void addChecks() {
-        //Integrity checks
-        checks.add(new OnGroundIntegrity());
-        checks.add(new PitchIntegrity());
-        checks.add(new VehicleIntegrity());
-
-        //Movement checks
-        checks.add(new ExcessiveJump());
-        checks.add(new HorizontalSpeed());
-        checks.add(new Jesus());
-        checks.add(new NoGravity());
-        checks.add(new NoSlowDown());
-        checks.add(new VerticalAcceleration());
-        checks.add(new VerticalSpeed());
+        for(Detection check : Main.data.getChecks()) {
+            if(CheckMove.class.isAssignableFrom(check.getClass())) {
+                checks.add((CheckMove) check);
+            }
+        }
     }
 
     @EventHandler

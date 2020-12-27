@@ -4,3 +4,14 @@ author: okexox
 main: me.okexox.hades.Main
 api-version: 1.8
 depend: [ProtocolLib]
+
+commands:
+  GetHadesAdmins:
+    description: Get all players who have access to hades
+    usage: /GetHadesAdmins
+  AddHadesAdmin:
+    description: Add an admin to Hades
+    usage: /AddHadesAdmin {name}
+  RemoveHadesAdmin:
+    description: Remove an admin from Hades
+    usage: /RemoveHadesAdmin {name}
