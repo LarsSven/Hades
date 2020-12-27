@@ -4,20 +4,19 @@ import me.okexox.hades.data.DataList;
 import me.okexox.hades.data.PlayerData;
 import me.okexox.hades.modules.base.interfaces.CheckMove;
 import me.okexox.hades.modules.base.Detection;
-import me.okexox.hades.modules.base.DetectionType;
+import me.okexox.hades.modules.base.FlagType;
+import me.okexox.hades.modules.base.interfaces.DetectionType;
 import me.okexox.hades.utility.BasicFunctions;
 import me.okexox.hades.utility.Settings;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerMoveEvent;
 
-import javax.persistence.Basic;
-
 import static me.okexox.hades.utility.BasicFunctions.*;
 
 public class HorizontalSpeed extends Detection implements CheckMove {
     public HorizontalSpeed() {
-        super("HorizontalSpeed", DetectionType.Ban);
+        super("HorizontalSpeed", FlagType.Ban, DetectionType.Movement);
     }
 
     public void check(PlayerMoveEvent e, PlayerData data) {

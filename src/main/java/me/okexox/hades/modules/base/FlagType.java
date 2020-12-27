@@ -1,5 +1,5 @@
 package me.okexox.hades.modules.base;
 
-public enum DetectionType {
+public enum FlagType {
     Ban, Experimental, Block
 }

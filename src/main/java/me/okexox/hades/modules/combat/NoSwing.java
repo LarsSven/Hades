@@ -2,15 +2,16 @@ package me.okexox.hades.modules.combat;
 
 import me.okexox.hades.data.PlayerData;
 import me.okexox.hades.modules.base.Detection;
-import me.okexox.hades.modules.base.DetectionType;
+import me.okexox.hades.modules.base.FlagType;
 import me.okexox.hades.modules.base.interfaces.CheckCombat;
+import me.okexox.hades.modules.base.interfaces.DetectionType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
 public class NoSwing extends Detection implements CheckCombat {
 
     public NoSwing() {
-        super("NoSwing", DetectionType.Ban);
+        super("NoSwing", FlagType.Ban, DetectionType.Combat);
     }
 
     @Override

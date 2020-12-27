@@ -4,6 +4,7 @@ import com.comphenix.protocol.ProtocolLibrary;
 import me.okexox.hades.data.DataList;
 import me.okexox.hades.data.PersistentData;
 import me.okexox.hades.manager.commands.AddAdminCommand;
+import me.okexox.hades.manager.commands.DetectionsCommand;
 import me.okexox.hades.manager.commands.GetAdminsCommand;
 import me.okexox.hades.manager.commands.RemoveAdminCommand;
 import me.okexox.hades.modules.events.CombatEvent;
@@ -68,6 +69,7 @@ public class Main extends JavaPlugin {
         this.getCommand("GetHadesAdmins").setExecutor(new GetAdminsCommand());
         this.getCommand("AddHadesAdmin").setExecutor(new AddAdminCommand());
         this.getCommand("RemoveHadesAdmin").setExecutor(new RemoveAdminCommand());
+        this.getCommand("HadesDetections").setExecutor(new DetectionsCommand());
     }
 
     @Override

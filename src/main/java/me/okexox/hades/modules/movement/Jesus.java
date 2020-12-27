@@ -3,7 +3,8 @@ package me.okexox.hades.modules.movement;
 import me.okexox.hades.data.PlayerData;
 import me.okexox.hades.modules.base.interfaces.CheckMove;
 import me.okexox.hades.modules.base.Detection;
-import me.okexox.hades.modules.base.DetectionType;
+import me.okexox.hades.modules.base.FlagType;
+import me.okexox.hades.modules.base.interfaces.DetectionType;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -13,7 +14,7 @@ import static me.okexox.hades.utility.BasicFunctions.round;
 
 public class Jesus extends Detection implements CheckMove {
     public Jesus() {
-        super("Jesus", DetectionType.Ban);
+        super("Jesus", FlagType.Ban, DetectionType.Movement);
     }
 
     public void check(PlayerMoveEvent e, PlayerData data) {

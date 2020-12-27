@@ -3,7 +3,8 @@ package me.okexox.hades.modules.movement;
 import me.okexox.hades.data.PlayerData;
 import me.okexox.hades.modules.base.interfaces.CheckMove;
 import me.okexox.hades.modules.base.Detection;
-import me.okexox.hades.modules.base.DetectionType;
+import me.okexox.hades.modules.base.FlagType;
+import me.okexox.hades.modules.base.interfaces.DetectionType;
 import me.okexox.hades.utility.BasicFunctions;
 import me.okexox.hades.utility.Settings;
 import org.bukkit.Material;
@@ -13,7 +14,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 public class ExcessiveJump extends Detection implements CheckMove {
 
     public ExcessiveJump() {
-        super("ExcessiveJump", DetectionType.Ban);
+        super("ExcessiveJump", FlagType.Ban, DetectionType.Movement);
     }
 
     public void check(PlayerMoveEvent e, PlayerData data) {

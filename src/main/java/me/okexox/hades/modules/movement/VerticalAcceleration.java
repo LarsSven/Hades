@@ -3,7 +3,8 @@ package me.okexox.hades.modules.movement;
 import me.okexox.hades.data.PlayerData;
 import me.okexox.hades.modules.base.interfaces.CheckMove;
 import me.okexox.hades.modules.base.Detection;
-import me.okexox.hades.modules.base.DetectionType;
+import me.okexox.hades.modules.base.FlagType;
+import me.okexox.hades.modules.base.interfaces.DetectionType;
 import me.okexox.hades.utility.BasicFunctions;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -11,7 +12,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 
 public class VerticalAcceleration extends Detection implements CheckMove {
     public VerticalAcceleration() {
-        super("VerticalAcceleration", DetectionType.Ban);
+        super("VerticalAcceleration", FlagType.Ban, DetectionType.Movement);
     }
 
     @Override

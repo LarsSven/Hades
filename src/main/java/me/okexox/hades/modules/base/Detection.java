@@ -1,6 +1,7 @@
 package me.okexox.hades.modules.base;
 
 import me.okexox.hades.Main;
+import me.okexox.hades.modules.base.interfaces.DetectionType;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -10,17 +11,19 @@ import static me.okexox.hades.data.PersistentData.HADES;
 
 public abstract class Detection implements Serializable {
     private final String name;
-    private final DetectionType type;
+    private final FlagType flagType;
+    private final DetectionType detectionType;
 
-    public Detection(String name, DetectionType type) {
+    public Detection(String name, FlagType flagType, DetectionType detectionType) {
         this.name = name;
-        this.type = type;
+        this.flagType = flagType;
+        this.detectionType = detectionType;
     }
 
     protected void flag(Player player,String message) {
         for(Player admin : Main.data.getAdmins()) {
             if(admin.isOnline()) {
-                admin.sendMessage(HADES + ChatColor.DARK_GREEN + "[" + type.toString() + "] " + ChatColor.BLUE + player.getName() + " flagged " + ChatColor.DARK_RED + "[" + name + "] " + ChatColor.BLUE + "[" + message + "]" + ".");
+                admin.sendMessage(HADES + ChatColor.DARK_GREEN + "[" + flagType.toString() + "] " + ChatColor.BLUE + player.getName() + " flagged " + ChatColor.DARK_RED + "[" + name + "] " + ChatColor.BLUE + "[" + message + "]" + ".");
             }
         }
     }
@@ -28,7 +31,7 @@ public abstract class Detection implements Serializable {
     protected void flag(Player player) {
         for(Player admin : Main.data.getAdmins()) {
             if(admin.isOnline()) {
-                admin.sendMessage(HADES + ChatColor.DARK_GREEN + "[" + type.toString() + "] " + ChatColor.BLUE + player.getName() + " flagged " + ChatColor.DARK_RED + "[" + name + "]" + ChatColor.BLUE + ".");
+                admin.sendMessage(HADES + ChatColor.DARK_GREEN + "[" + flagType.toString() + "] " + ChatColor.BLUE + player.getName() + " flagged " + ChatColor.DARK_RED + "[" + name + "]" + ChatColor.BLUE + ".");
             }
         }
     }
@@ -39,5 +42,9 @@ public abstract class Detection implements Serializable {
                 admin.sendMessage(HADES + ChatColor.BLUE + message);
             }
         }
+    }
+
+    public DetectionType getDetectionType() {
+        return detectionType;
     }
 }

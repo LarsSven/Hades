@@ -9,7 +9,8 @@ import me.okexox.hades.data.DataList;
 import me.okexox.hades.data.PlayerData;
 import me.okexox.hades.modules.base.interfaces.CheckMove;
 import me.okexox.hades.modules.base.Detection;
-import me.okexox.hades.modules.base.DetectionType;
+import me.okexox.hades.modules.base.FlagType;
+import me.okexox.hades.modules.base.interfaces.DetectionType;
 import me.okexox.hades.utility.BasicFunctions;
 import me.okexox.hades.utility.Settings;
 import net.minecraft.server.v1_8_R3.PacketPlayInBlockDig;
@@ -19,7 +20,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 
 public class NoSlowDown extends Detection implements CheckMove {
     public NoSlowDown() {
-        super("NoSlowDown", DetectionType.Ban);
+        super("NoSlowDown", FlagType.Ban, DetectionType.Movement);
     }
 
     public static void registerCancelCheck(Main main) {
