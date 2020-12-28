@@ -6,12 +6,12 @@ import me.okexox.hades.modules.combat.WallHit;
 import me.okexox.hades.modules.exploits.FastHeal;
 import me.okexox.hades.modules.exploits.Nuker;
 import me.okexox.hades.modules.exploits.SelfDamage;
+import me.okexox.hades.modules.integrity.CanFlyIntegrity;
 import me.okexox.hades.modules.integrity.OnGroundIntegrity;
 import me.okexox.hades.modules.integrity.PitchIntegrity;
 import me.okexox.hades.modules.integrity.VehicleIntegrity;
 import me.okexox.hades.modules.movement.*;
 import org.bukkit.ChatColor;
-import org.bukkit.entity.Player;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -41,6 +41,7 @@ public class PersistentData implements Serializable {
         checks.add(new OnGroundIntegrity());
         checks.add(new PitchIntegrity());
         checks.add(new VehicleIntegrity());
+        checks.add(new CanFlyIntegrity());
         //Movement
         checks.add(new ExcessiveJump());
         checks.add(new HorizontalSpeed());

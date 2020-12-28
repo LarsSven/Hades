@@ -10,7 +10,6 @@ import me.okexox.hades.manager.commands.RemoveAdminCommand;
 import me.okexox.hades.modules.events.CombatEvent;
 import me.okexox.hades.modules.events.*;
 import me.okexox.hades.modules.exploits.Nuker;
-import me.okexox.hades.modules.movement.*;
 import me.okexox.hades.players.JoinLeaveHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -62,7 +61,7 @@ public class Main extends JavaPlugin {
         manager.registerEvents(new AnimationEvent(), this);
 
         BlockDigEvent.blockDig(this);
-        CanFlyEvent.canFly(this);
+        (new AbilitiesEvent()).abilities(this); //TODO: Make a nicer implementation
         Nuker.setTimer(this);
     }
 

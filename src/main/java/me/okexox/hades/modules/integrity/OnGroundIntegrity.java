@@ -4,7 +4,7 @@ import me.okexox.hades.data.PlayerData;
 import me.okexox.hades.modules.base.interfaces.CheckMove;
 import me.okexox.hades.modules.base.Detection;
 import me.okexox.hades.modules.base.FlagType;
-import me.okexox.hades.modules.base.interfaces.DetectionType;
+import me.okexox.hades.modules.base.DetectionType;
 import me.okexox.hades.utility.BasicFunctions;
 import org.bukkit.Location;
 import org.bukkit.entity.Boat;

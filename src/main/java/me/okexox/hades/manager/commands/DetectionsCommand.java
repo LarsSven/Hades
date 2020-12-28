@@ -2,7 +2,7 @@ package me.okexox.hades.manager.commands;
 
 import me.okexox.hades.Main;
 import me.okexox.hades.modules.base.Detection;
-import me.okexox.hades.modules.base.interfaces.DetectionType;
+import me.okexox.hades.modules.base.DetectionType;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
