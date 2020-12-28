@@ -23,10 +23,10 @@ public class AddAdminCommand implements CommandExecutor {
             commandSender.sendMessage(HADES + ChatColor.BLUE + "No player with the name \"" + strings[0] + "\" is known.");
             return true;
         }
-        if(Main.data.getAdmins().contains(player)) {
+        if(Main.data.getAdmins().contains(playerName)) {
             commandSender.sendMessage(HADES + ChatColor.BLUE + "\"" + playerName + "\" already is an admin.");
         } else {
-            Main.data.addAdmin(player);
+            Main.data.addAdmin(playerName);
             commandSender.sendMessage(HADES + ChatColor.BLUE + "Added \"" + playerName + "\" to the admins.");
         }
         return true;

@@ -21,7 +21,7 @@ public class PersistentData implements Serializable {
     public static final String HADES = ChatColor.RED + "[Hades] ";
 
     private ArrayList<Detection> checks;
-    private ArrayList<Player> admins;
+    private ArrayList<String> admins;
 
     public PersistentData() {
         admins = new ArrayList<>();
@@ -51,15 +51,15 @@ public class PersistentData implements Serializable {
         checks.add(new VerticalSpeed());
     }
 
-    public void addAdmin(Player name) {
+    public void addAdmin(String name) {
         admins.add(name);
     }
 
-    public void removeAdmin(Player name) {
+    public void removeAdmin(String name) {
         admins.remove(name);
     }
 
-    public ArrayList<Player> getAdmins() {
+    public ArrayList<String> getAdmins() {
         return admins;
     }
 

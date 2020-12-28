@@ -2,6 +2,7 @@ package me.okexox.hades.modules.base;
 
 import me.okexox.hades.Main;
 import me.okexox.hades.modules.base.interfaces.DetectionType;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -21,7 +22,8 @@ public abstract class Detection implements Serializable {
     }
 
     protected void flag(Player player,String message) {
-        for(Player admin : Main.data.getAdmins()) {
+        for(String name : Main.data.getAdmins()) {
+            Player admin = Bukkit.getPlayer(name);
             if(admin.isOnline()) {
                 admin.sendMessage(HADES + ChatColor.DARK_GREEN + "[" + flagType.toString() + "] " + ChatColor.BLUE + player.getName() + " flagged " + ChatColor.DARK_RED + "[" + name + "] " + ChatColor.BLUE + "[" + message + "]" + ".");
             }
@@ -29,7 +31,8 @@ public abstract class Detection implements Serializable {
     }
 
     protected void flag(Player player) {
-        for(Player admin : Main.data.getAdmins()) {
+        for(String name : Main.data.getAdmins()) {
+            Player admin = Bukkit.getPlayer(name);
             if(admin.isOnline()) {
                 admin.sendMessage(HADES + ChatColor.DARK_GREEN + "[" + flagType.toString() + "] " + ChatColor.BLUE + player.getName() + " flagged " + ChatColor.DARK_RED + "[" + name + "]" + ChatColor.BLUE + ".");
             }
@@ -37,7 +40,8 @@ public abstract class Detection implements Serializable {
     }
 
     public static void notify(String message) {
-        for(Player admin : Main.data.getAdmins()) {
+        for(String name : Main.data.getAdmins()) {
+            Player admin = Bukkit.getPlayer(name);
             if(admin.isOnline()) {
                 admin.sendMessage(HADES + ChatColor.BLUE + message);
             }

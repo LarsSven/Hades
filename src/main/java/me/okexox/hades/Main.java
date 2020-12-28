@@ -61,7 +61,8 @@ public class Main extends JavaPlugin {
         manager.registerEvents(new DeathEvent(), this);
         manager.registerEvents(new AnimationEvent(), this);
 
-        NoSlowDown.registerCancelCheck(this);
+        BlockDigEvent.blockDig(this);
+        CanFlyEvent.canFly(this);
         Nuker.setTimer(this);
     }
 
@@ -89,6 +90,7 @@ public class Main extends JavaPlugin {
             System.out.println("File could not be found!");
         } catch(IOException e) {
             System.out.println("Unable to write to file!");
+            e.printStackTrace();
         }
     }
 }

@@ -13,8 +13,8 @@ public class GetAdminsCommand implements CommandExecutor {
         StringBuilder message = new StringBuilder();
         message.append(ChatColor.RED + "[HADES ADMINS]\n");
         int count = 1;
-        for(Player admin : Main.data.getAdmins()) {
-            message.append(ChatColor.GREEN).append(count++).append(". " + ChatColor.BLUE).append(admin.getName()).append('\n');
+        for(String admin : Main.data.getAdmins()) {
+            message.append(ChatColor.GREEN).append(count++).append(". " + ChatColor.BLUE).append(admin).append('\n');
         }
         commandSender.sendMessage(message.toString());
         return true;

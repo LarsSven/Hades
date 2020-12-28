@@ -23,10 +23,10 @@ public class RemoveAdminCommand implements CommandExecutor {
             commandSender.sendMessage(HADES + ChatColor.BLUE + "No player with the name \"" + strings[0] + "\" is known.");
             return true;
         }
-        if(!Main.data.getAdmins().contains(player)) {
+        if(!Main.data.getAdmins().contains(playerName)) {
             commandSender.sendMessage(HADES + ChatColor.BLUE + "\"" + playerName + "\" is not an admin.");
         } else {
-            Main.data.removeAdmin(player);
+            Main.data.removeAdmin(playerName);
             commandSender.sendMessage(HADES + ChatColor.BLUE + "Removed \"" + playerName + "\" from the admins.");
         }
         return true;

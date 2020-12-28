@@ -23,21 +23,6 @@ public class NoSlowDown extends Detection implements CheckMove {
         super("NoSlowDown", FlagType.Ban, DetectionType.Movement);
     }
 
-    public static void registerCancelCheck(Main main) {
-        ProtocolManager manager = ProtocolLibrary.getProtocolManager();
-        manager.addPacketListener(new PacketAdapter(main, ListenerPriority.NORMAL, PacketType.Play.Client.BLOCK_DIG) {
-            @Override
-            public void onPacketReceiving(PacketEvent e) {
-                if (e.getPacketType() == PacketType.Play.Client.BLOCK_DIG) {
-                    PacketPlayInBlockDig packet = (PacketPlayInBlockDig)e.getPacket().getHandle();
-                    if(packet.c() == PacketPlayInBlockDig.EnumPlayerDigType.RELEASE_USE_ITEM) {
-                        DataList.getPlayer(e.getPlayer().getName()).setSlowedDown(false);
-                    }
-                }
-            }
-        });
-    }
-
     public void check(PlayerMoveEvent e, PlayerData data) {
         Player player = e.getPlayer();
         double maxSpeed = Settings.ONGROUND_SLOWDOWN_SPEED;
