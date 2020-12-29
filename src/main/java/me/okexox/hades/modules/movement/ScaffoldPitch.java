@@ -1,6 +1,7 @@
 package me.okexox.hades.modules.movement;
 
 import me.okexox.hades.data.PersistentData;
+import me.okexox.hades.data.PlayerData;
 import me.okexox.hades.modules.base.Detection;
 import me.okexox.hades.modules.base.DetectionType;
 import me.okexox.hades.modules.base.FlagType;
@@ -17,7 +18,7 @@ public class ScaffoldPitch extends Detection implements CheckBlockPlace {
     }
 
     @Override
-    public void check(BlockPlaceEvent e) {
+    public void check(BlockPlaceEvent e, PlayerData data) {
         if(!PersistentData.getScaffoldBlocks().contains(e.getBlockAgainst().getType())) {
             return; //Unsafe block to check pitch on, like slabs, snow, and other non-full blocks
         }

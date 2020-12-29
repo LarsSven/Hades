@@ -48,6 +48,11 @@ public class PlayerData {
     private boolean armSwung = false;
     //Checks whether the newest move was an edge teleport.
     private boolean isEdgeTeleport = false;
+    //y difference last tick
+    private double yDiff = 0;
+    //A block place swing animation comes after the block place
+    //Set to true when swinging, and false when placing a block. As such, this should always be true when you place a block.
+    private boolean maintainsBlockSwing = true;
 
 
     public int getSpeed() {
@@ -264,5 +269,21 @@ public class PlayerData {
 
     public void setEdgeTeleport(boolean edgeTeleport) {
         isEdgeTeleport = edgeTeleport;
+    }
+
+    public double getyDiff() {
+        return yDiff;
+    }
+
+    public void setyDiff(double yDiff) {
+        this.yDiff = yDiff;
+    }
+
+    public boolean maintainsBlockSwing() {
+        return maintainsBlockSwing;
+    }
+
+    public void setBlockSwing(boolean maintainsBlockSwing) {
+        this.maintainsBlockSwing = maintainsBlockSwing;
     }
 }

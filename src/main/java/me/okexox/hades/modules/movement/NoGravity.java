@@ -11,7 +11,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerMoveEvent;
 
 import static me.okexox.hades.utility.BasicFunctions.round;
-import static me.okexox.hades.utility.Settings.GCD;
 
 public class NoGravity extends Detection implements CheckMove {
     public NoGravity() {
@@ -20,18 +19,19 @@ public class NoGravity extends Detection implements CheckMove {
 
     public void check(PlayerMoveEvent e, PlayerData data) {
         Player player = e.getPlayer();
+        double difference = (e.getTo().getY() - e.getFrom().getY());
         if(data.flewRecently()
             || player.isInsideVehicle()
-            || (e.getTo().getY() - 0.24918707874468282) % GCD == 0 //Max jump height
             || !BasicFunctions.checkAllBlockAround(e.getPlayer().getLocation(), 0)
-            || data.inCombat()) {
+        ) {
+            data.setyDiff(difference);
             return;
         }
         Location loc = e.getPlayer().getLocation().clone();
         loc.setY(loc.getY()-1);
-        double difference = (e.getTo().getY() - e.getFrom().getY());
-        if(BasicFunctions.checkAllBlockAround(loc, 0) && difference == 0) {
+        if(BasicFunctions.checkAllBlockAround(loc, 0) && difference == 0 && data.getyDiff() == 0) {
             flag(e.getPlayer(), "yDif=" + difference + " y=" + round(e.getTo().getY()));
         }
+        data.setyDiff(difference);
     }
 }

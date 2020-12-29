@@ -1,7 +1,7 @@
 package me.okexox.hades.data;
 
 import me.okexox.hades.modules.base.Detection;
-import me.okexox.hades.modules.combat.NoSwing;
+import me.okexox.hades.modules.combat.CombatNoSwing;
 import me.okexox.hades.modules.combat.WallHit;
 import me.okexox.hades.modules.exploits.FastHeal;
 import me.okexox.hades.modules.exploits.Nuker;
@@ -34,6 +34,33 @@ public class PersistentData implements Serializable {
     public void setupData() {
         addChecks();
         addScaffoldBlocks();
+    }
+
+    private void addChecks() {
+        checks = new ArrayList<>();
+        //Combat
+        checks.add(new CombatNoSwing());
+        checks.add(new WallHit());
+        //Exploits
+        checks.add(new FastHeal());
+        checks.add(new Nuker());
+        checks.add(new SelfDamage());
+        //Integrity
+        checks.add(new OnGroundIntegrity());
+        checks.add(new PitchIntegrity());
+        checks.add(new VehicleIntegrity());
+        checks.add(new CanFlyIntegrity());
+        //Movement
+        checks.add(new ExcessiveJump());
+        checks.add(new HorizontalSpeed());
+        checks.add(new Jesus());
+        checks.add(new NoGravity());
+        checks.add(new NoSlowDown());
+        checks.add(new VerticalAcceleration());
+        checks.add(new VerticalSpeed());
+        checks.add(new ScaffoldHand());
+        checks.add(new ScaffoldPitch());
+        checks.add(new BlockNoSwing());
     }
 
     private void addScaffoldBlocks() {
@@ -98,32 +125,6 @@ public class PersistentData implements Serializable {
         blocks.add(Material.COAL_BLOCK);
         blocks.add(Material.PACKED_ICE);
         blocks.add(Material.RED_SANDSTONE);
-    }
-
-    private void addChecks() {
-        checks = new ArrayList<>();
-        //Combat
-        checks.add(new NoSwing());
-        checks.add(new WallHit());
-        //Exploits
-        checks.add(new FastHeal());
-        checks.add(new Nuker());
-        checks.add(new SelfDamage());
-        //Integrity
-        checks.add(new OnGroundIntegrity());
-        checks.add(new PitchIntegrity());
-        checks.add(new VehicleIntegrity());
-        checks.add(new CanFlyIntegrity());
-        //Movement
-        checks.add(new ExcessiveJump());
-        checks.add(new HorizontalSpeed());
-        checks.add(new Jesus());
-        checks.add(new NoGravity());
-        checks.add(new NoSlowDown());
-        checks.add(new VerticalAcceleration());
-        checks.add(new VerticalSpeed());
-        checks.add(new ScaffoldHand());
-        checks.add(new ScaffoldPitch());
     }
 
     public void addAdmin(String name) {

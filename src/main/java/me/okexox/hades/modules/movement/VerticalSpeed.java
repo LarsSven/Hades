@@ -27,7 +27,6 @@ public class VerticalSpeed extends Detection implements CheckMove {
             || data.isEdgeTeleport()
             || !BasicFunctions.pistonSafety()
             || player.isOnGround()
-            || e.getFrom().getBlock().getType().equals(Material.CAULDRON)
         ) {
             return;
         }

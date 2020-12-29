@@ -1,6 +1,7 @@
 package me.okexox.hades.modules.movement;
 
 import me.okexox.hades.data.PersistentData;
+import me.okexox.hades.data.PlayerData;
 import me.okexox.hades.modules.base.Detection;
 import me.okexox.hades.modules.base.DetectionType;
 import me.okexox.hades.modules.base.FlagType;
@@ -16,7 +17,7 @@ public class ScaffoldHand extends Detection implements CheckBlockPlace {
     }
 
     @Override
-    public void check(BlockPlaceEvent e) {
+    public void check(BlockPlaceEvent e, PlayerData data) {
         Player player = e.getPlayer();
         Block placedBlock = e.getBlock();
         ItemStack itemInHand = player.getItemInHand();

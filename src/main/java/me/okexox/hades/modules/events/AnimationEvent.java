@@ -13,6 +13,7 @@ public class AnimationEvent implements Listener {
         if(e.getAnimationType().equals(PlayerAnimationType.ARM_SWING)) {
             PlayerData data = DataList.getPlayer(e.getPlayer().getName());
             data.setArmSwung(true);
+            data.setBlockSwing(true);
         }
     }
 }
