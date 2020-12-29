@@ -25,6 +25,7 @@ public class VerticalAcceleration extends Detection implements CheckMove {
            || !BasicFunctions.pistonSafety()
            || player.isInsideVehicle()
            || player.isOnGround()
+           || data.isEdgeTeleport()
            || player.getLocation().getBlock().getType().equals(Material.LADDER)) {
             data.setLastVerticalSpeed(vSpeed);
             return;

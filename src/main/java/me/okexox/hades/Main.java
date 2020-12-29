@@ -37,7 +37,9 @@ public class Main extends JavaPlugin {
         } else {
             try(FileInputStream fileInputStream = new FileInputStream(dataLocation);
                 ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)) {
-                return (PersistentData) objectInputStream.readObject();
+                PersistentData returnedData = (PersistentData) objectInputStream.readObject();
+                returnedData.setupData();
+                return returnedData;
             } catch(IOException | ClassNotFoundException e) {
                 System.out.println("Could not load in persistent data!");
             }
@@ -59,6 +61,7 @@ public class Main extends JavaPlugin {
         manager.registerEvents(new DamageEvent(), this);
         manager.registerEvents(new DeathEvent(), this);
         manager.registerEvents(new AnimationEvent(), this);
+        manager.registerEvents(new PlaceBlockEvent(), this);
 
         BlockDigEvent.blockDig(this);
         (new AbilitiesEvent()).abilities(this); //TODO: Make a nicer implementation

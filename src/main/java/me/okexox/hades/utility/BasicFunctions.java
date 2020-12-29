@@ -5,6 +5,8 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 
+import static me.okexox.hades.utility.Settings.GCD;
+
 public class BasicFunctions {
     public static boolean isSwimming(Location loc) {
         for(float x = -0.5f; x <= 0.5f; x += 0.5f) {
@@ -25,7 +27,7 @@ public class BasicFunctions {
     }
 
     public static double round(double value) {
-        return Math.round(value * 100.)/100.;
+        return Math.round(value * 1000.)/1000.;
     }
 
 
@@ -51,7 +53,7 @@ public class BasicFunctions {
     public static boolean pistonSafety() {
         //TODO: Only return false for players who have been close to an event
         //TODO: Lag sensitive
-        return System.currentTimeMillis()-ServerData.getInstance().isPistonExtended() >= 500;
+        return System.currentTimeMillis()-ServerData.getInstance().isPistonExtended() >= 800;
     }
 
     /**
@@ -93,5 +95,19 @@ public class BasicFunctions {
             }
         }
         return false;
+    }
+
+    /**
+     * Detects whether the move could be due to a teleport up that the server may do when the client hits the edge of a block
+     * @param loc The location to be checked, should be the "to" location
+     * @return Whether it is an edge teleport or not
+     */
+    public static boolean edgeTeleport(Location loc) {
+        Location newLoc = loc.clone();
+        boolean isValidPos = newLoc.getY() % GCD == 0;
+        boolean currentAllAir = BasicFunctions.checkAllBlockAround(newLoc, 0);
+        newLoc.setY(newLoc.getY()-1);
+        boolean belowAllAir = BasicFunctions.checkAllBlockAround(newLoc, 0);
+        return isValidPos && (!currentAllAir || !belowAllAir);
     }
 }

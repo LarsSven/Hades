@@ -10,6 +10,7 @@ import me.okexox.hades.modules.integrity.OnGroundIntegrity;
 import me.okexox.hades.modules.integrity.PitchIntegrity;
 import me.okexox.hades.modules.integrity.VehicleIntegrity;
 import me.okexox.hades.modules.movement.*;
+import me.okexox.hades.utility.BasicFunctions;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -60,6 +61,7 @@ public class MoveEvent implements Listener {
 
     private void updateMovementBefore(PlayerMoveEvent e, PlayerData data) {
         Player player = e.getPlayer();
+        data.setEdgeTeleport(BasicFunctions.edgeTeleport(e.getTo()));
         data.setNearStairsOrSlabs(isNearStairs(e.getPlayer().getLocation()));
         data.setOnGround(player.isOnGround());
         data.setFlewRecently(player.isFlying());

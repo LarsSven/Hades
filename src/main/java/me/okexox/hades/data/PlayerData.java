@@ -46,6 +46,8 @@ public class PlayerData {
     private int flewRecently = 0;
     //Stores if arm was swung
     private boolean armSwung = false;
+    //Checks whether the newest move was an edge teleport.
+    private boolean isEdgeTeleport = false;
 
 
     public int getSpeed() {
@@ -254,5 +256,13 @@ public class PlayerData {
 
     public void setArmSwung(boolean armSwung) {
         this.armSwung = armSwung;
+    }
+
+    public boolean isEdgeTeleport() {
+        return isEdgeTeleport;
+    }
+
+    public void setEdgeTeleport(boolean edgeTeleport) {
+        isEdgeTeleport = edgeTeleport;
     }
 }

@@ -8,6 +8,7 @@ import me.okexox.hades.modules.base.DetectionType;
 import me.okexox.hades.utility.BasicFunctions;
 import me.okexox.hades.utility.Settings;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerMoveEvent;
 
@@ -23,9 +24,11 @@ public class VerticalSpeed extends Detection implements CheckMove {
         if(player.isInsideVehicle()
             || data.inCombat()
             || data.isBadJump()
+            || data.isEdgeTeleport()
             || !BasicFunctions.pistonSafety()
             || player.isOnGround()
-            || data.wasNearStairsOrSlabs()) {
+            || e.getFrom().getBlock().getType().equals(Material.CAULDRON)
+        ) {
             return;
         }
         Location loc = e.getPlayer().getLocation().clone();
@@ -40,10 +43,9 @@ public class VerticalSpeed extends Detection implements CheckMove {
                 maxDistance += 0.15 * data.getJumpEffect();
             }
             if(vDistance > maxDistance) {
-                flag(e.getPlayer(), round(vDistance) + " blocks moved");
+                flag(e.getPlayer(), "speed=" + round(vDistance) + " newLoc=" + round(e.getTo().getY()));
             }
         }
     }
-
 
 }
