@@ -46,10 +46,10 @@ public class HorizontalSpeed extends Detection implements CheckMove {
         Location from = e.getFrom();
         Location to = e.getTo();
         double hDistance = Math.sqrt(Math.pow((to.getX()-from.getX()),2) + Math.pow((to.getZ()-from.getZ()),2));
-        int speedEffect = DataList.getPlayer(player.getName()).getSpeed();
+        int speedEffect = data.getSpeed();
         speedMax += 0.1 * speedEffect;
         if(hDistance > speedMax) {
-            flag(e.getPlayer(), "Speed=" + round(hDistance) + " Max=" + speedMax);
+            flag(e, e.getPlayer(), "Speed=" + round(hDistance) + " Max=" + speedMax);
         }
     }
 }

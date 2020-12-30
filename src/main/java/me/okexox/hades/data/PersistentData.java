@@ -21,10 +21,13 @@ import java.util.HashSet;
 public class PersistentData implements Serializable {
     private long serialVersionUID = 1;
     public static final String HADES = ChatColor.RED + "[Hades] ";
+    private static PersistentData instance;
 
     private transient ArrayList<Detection> checks;
     private static transient HashSet<Material> blocks; //Blocks that can be used for scaffold checks
     private ArrayList<String> admins;
+
+    private boolean punishPlayers = false;
 
     public PersistentData() {
         admins = new ArrayList<>();
@@ -60,6 +63,7 @@ public class PersistentData implements Serializable {
         checks.add(new VerticalSpeed());
         checks.add(new ScaffoldHand());
         checks.add(new ScaffoldPitch());
+        checks.add(new ScaffoldYaw());
         checks.add(new BlockNoSwing());
     }
 
@@ -145,5 +149,21 @@ public class PersistentData implements Serializable {
 
     public static HashSet<Material> getScaffoldBlocks() {
         return blocks;
+    }
+
+    public boolean punishPlayers() {
+        return punishPlayers;
+    }
+
+    public void setPunishPlayers(boolean punishPlayers) {
+        this.punishPlayers = punishPlayers;
+    }
+
+    public static PersistentData getInstance() {
+        return instance;
+    }
+
+    public static void setInstance(PersistentData instance) {
+        PersistentData.instance = instance;
     }
 }

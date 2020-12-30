@@ -15,7 +15,7 @@ public class VehicleIntegrity extends Detection implements CheckMove {
     @Override
     public void check(PlayerMoveEvent e, PlayerData data) {
         if(e.getPlayer().isInsideVehicle() && e.getPlayer().getVehicle() == null) {
-            flag(e.getPlayer());
+            flag(e, e.getPlayer());
         }
     }
 }

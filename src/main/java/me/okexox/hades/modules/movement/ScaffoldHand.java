@@ -13,7 +13,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class ScaffoldHand extends Detection implements CheckBlockPlace {
     public ScaffoldHand() {
-        super("ScaffoldHand", FlagType.Experimental, DetectionType.Movement);
+        super("ScaffoldHand", FlagType.Ban, DetectionType.Movement);
     }
 
     @Override
@@ -25,7 +25,7 @@ public class ScaffoldHand extends Detection implements CheckBlockPlace {
             return;
         }
         if(PersistentData.getScaffoldBlocks().contains(placedBlock.getType())) {
-            flag(player, "Item=" + itemInHand + " BLock=" + placedBlock);
+            flag(e, player, "Item=" + itemInHand + " BLock=" + placedBlock);
         }
     }
 }

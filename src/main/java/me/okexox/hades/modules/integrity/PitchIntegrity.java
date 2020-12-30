@@ -16,7 +16,7 @@ public class PitchIntegrity extends Detection implements CheckMove {
     public void check(PlayerMoveEvent e, PlayerData data) {
         double pitch = e.getTo().getPitch();
         if(pitch < -90 || pitch > 90) {
-            flag(e.getPlayer(), "Pitch: " + Math.round(pitch * 100.)/100.);
+            flag(e, e.getPlayer(), "Pitch: " + Math.round(pitch * 100.)/100.);
         }
     }
 }

@@ -40,7 +40,7 @@ public class ExcessiveJump extends Detection implements CheckMove {
             maxJumpTime += 2 + data.getJumpEffect();
         }
         if(jumpTime > maxJumpTime) {
-            flag(player, jumpTime + " MoveTicks");
+            flag(e, player, jumpTime + " MoveTicks");
         }
     }
 }

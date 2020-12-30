@@ -30,7 +30,7 @@ public class NoGravity extends Detection implements CheckMove {
         Location loc = e.getPlayer().getLocation().clone();
         loc.setY(loc.getY()-1);
         if(BasicFunctions.checkAllBlockAround(loc, 0) && difference == 0 && data.getyDiff() == 0) {
-            flag(e.getPlayer(), "yDif=" + difference + " y=" + round(e.getTo().getY()));
+            flag(e, player, "yDif=" + difference + " y=" + round(e.getTo().getY()));
         }
         data.setyDiff(difference);
     }

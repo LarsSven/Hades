@@ -1,6 +1,7 @@
 package me.okexox.hades.manager.commands;
 
 import me.okexox.hades.Main;
+import me.okexox.hades.data.PersistentData;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -13,7 +14,7 @@ public class GetAdminsCommand implements CommandExecutor {
         StringBuilder message = new StringBuilder();
         message.append(ChatColor.RED + "[HADES ADMINS]\n");
         int count = 1;
-        for(String admin : Main.data.getAdmins()) {
+        for(String admin : PersistentData.getInstance().getAdmins()) {
             message.append(ChatColor.GREEN).append(count++).append(". " + ChatColor.BLUE).append(admin).append('\n');
         }
         commandSender.sendMessage(message.toString());

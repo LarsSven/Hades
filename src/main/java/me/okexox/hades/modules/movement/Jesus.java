@@ -18,10 +18,16 @@ public class Jesus extends Detection implements CheckMove {
     }
 
     public void check(PlayerMoveEvent e, PlayerData data) {
+        //Checks the onground on the next tick due to a delay of the onground value
+        if(data.isJesusFlagged()) {
+            if(e.getPlayer().isOnGround()) {
+                flag(e, e.getPlayer(), "y=" + round(e.getPlayer().getLocation().getY()));
+            }
+            data.setJesusFlagged(false);
+        }
+
         if(!e.getPlayer().getLocation().getBlock().getType().equals(Material.AIR)
-            || !e.getPlayer().isOnGround()
             || !isSafeDistance(e.getFrom().clone())
-            || data.getOnGroundMoves() > 0 //Handles the 1 move delay of the ground value
         ) {
             return;
         }
@@ -29,7 +35,7 @@ public class Jesus extends Detection implements CheckMove {
         World world = loc.getWorld();
         loc.setY(loc.getY()-1);
         if(world.getBlockAt(loc).isLiquid()) {
-            flag(e.getPlayer(), "y=" + round(e.getPlayer().getLocation().getY()));
+            data.setJesusFlagged(true);
         }
     }
 

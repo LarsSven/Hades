@@ -1,6 +1,7 @@
 package me.okexox.hades.modules.events;
 
 import me.okexox.hades.Main;
+import me.okexox.hades.data.PersistentData;
 import me.okexox.hades.modules.base.Detection;
 import me.okexox.hades.modules.base.interfaces.CheckCombat;
 import me.okexox.hades.modules.base.interfaces.CheckHeal;
@@ -21,7 +22,7 @@ public class HealEvent implements Listener {
     }
 
     private void addChecks() {
-        for(Detection check : Main.data.getChecks()) {
+        for(Detection check : PersistentData.getInstance().getChecks()) {
             if(CheckHeal.class.isAssignableFrom(check.getClass())) {
                 checks.add((CheckHeal) check);
             }

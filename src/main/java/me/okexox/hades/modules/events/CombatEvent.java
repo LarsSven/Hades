@@ -2,6 +2,7 @@ package me.okexox.hades.modules.events;
 
 import me.okexox.hades.Main;
 import me.okexox.hades.data.DataList;
+import me.okexox.hades.data.PersistentData;
 import me.okexox.hades.data.PlayerData;
 import me.okexox.hades.modules.base.Detection;
 import me.okexox.hades.modules.base.interfaces.CheckCombat;
@@ -21,7 +22,7 @@ public class CombatEvent implements Listener {
     }
 
     private void addChecks() {
-        for(Detection check : Main.data.getChecks()) {
+        for(Detection check : PersistentData.getInstance().getChecks()) {
             if(CheckCombat.class.isAssignableFrom(check.getClass())) {
                 checks.add((CheckCombat) check);
             }

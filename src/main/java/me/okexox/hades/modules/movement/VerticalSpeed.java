@@ -42,7 +42,7 @@ public class VerticalSpeed extends Detection implements CheckMove {
                 maxDistance += 0.15 * data.getJumpEffect();
             }
             if(vDistance > maxDistance) {
-                flag(e.getPlayer(), "speed=" + round(vDistance) + " newLoc=" + round(e.getTo().getY()));
+                flag(e, e.getPlayer(), "speed=" + round(vDistance) + " newLoc=" + round(e.getTo().getY()));
             }
         }
     }

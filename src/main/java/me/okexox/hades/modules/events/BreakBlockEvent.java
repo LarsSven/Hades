@@ -1,6 +1,7 @@
 package me.okexox.hades.modules.events;
 
 import me.okexox.hades.Main;
+import me.okexox.hades.data.PersistentData;
 import me.okexox.hades.data.PlayerData;
 import me.okexox.hades.modules.base.Detection;
 import me.okexox.hades.modules.base.interfaces.CheckBlockBreak;
@@ -22,7 +23,7 @@ public class BreakBlockEvent implements Listener {
     }
 
     private void addChecks() {
-        for(Detection check : Main.data.getChecks()) {
+        for(Detection check : PersistentData.getInstance().getChecks()) {
             if(CheckBlockBreak.class.isAssignableFrom(check.getClass())) {
                 checks.add((CheckBlockBreak) check);
             }

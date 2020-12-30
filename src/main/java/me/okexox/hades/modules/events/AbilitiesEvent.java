@@ -7,6 +7,7 @@ import com.comphenix.protocol.events.ListenerPriority;
 import com.comphenix.protocol.events.PacketAdapter;
 import com.comphenix.protocol.events.PacketEvent;
 import me.okexox.hades.Main;
+import me.okexox.hades.data.PersistentData;
 import me.okexox.hades.modules.base.Detection;
 import me.okexox.hades.modules.base.interfaces.CheckAbilities;
 import me.okexox.hades.modules.base.interfaces.CheckHeal;
@@ -23,7 +24,7 @@ public class AbilitiesEvent {
     }
 
     private void addChecks() {
-        for(Detection check : Main.data.getChecks()) {
+        for(Detection check : PersistentData.getInstance().getChecks()) {
             if(CheckAbilities.class.isAssignableFrom(check.getClass())) {
                 checks.add((CheckAbilities) check);
             }

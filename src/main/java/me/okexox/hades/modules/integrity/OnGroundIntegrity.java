@@ -20,6 +20,7 @@ public class OnGroundIntegrity extends Detection implements CheckMove {
     }
 
     public void check(PlayerMoveEvent e, PlayerData data) {
+        //TODO: Ghost blocks
         Player player = e.getPlayer();
         for(Entity entity : e.getPlayer().getWorld().getNearbyEntities(e.getFrom(), 1., 1., 1.)) {
             if(entity instanceof Boat) {
@@ -43,7 +44,7 @@ public class OnGroundIntegrity extends Detection implements CheckMove {
         double heightTo = e.getTo().getY();
 
         if(player.isOnGround() && heightFrom % GCD != 0 && heightTo % GCD != 0) {
-            flag(e.getPlayer(), "from=" + e.getFrom().getY() + " to=" + e.getTo().getY());
+            flag(e, e.getPlayer(), "from=" + e.getFrom().getY() + " to=" + e.getTo().getY());
         }
     }
 }

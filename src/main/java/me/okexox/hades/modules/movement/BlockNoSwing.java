@@ -15,7 +15,7 @@ public class BlockNoSwing extends Detection implements CheckBlockPlace {
     @Override
     public void check(BlockPlaceEvent e, PlayerData data) {
         if(!data.maintainsBlockSwing()) {
-            flag(e.getPlayer());
+            flag(e, e.getPlayer());
         }
         data.setBlockSwing(false);
     }

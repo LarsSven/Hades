@@ -1,6 +1,7 @@
 package me.okexox.hades.manager.commands;
 
 import me.okexox.hades.Main;
+import me.okexox.hades.data.PersistentData;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -23,10 +24,10 @@ public class AddAdminCommand implements CommandExecutor {
             commandSender.sendMessage(HADES + ChatColor.BLUE + "No player with the name \"" + strings[0] + "\" is known.");
             return true;
         }
-        if(Main.data.getAdmins().contains(playerName)) {
+        if(PersistentData.getInstance().getAdmins().contains(playerName)) {
             commandSender.sendMessage(HADES + ChatColor.BLUE + "\"" + playerName + "\" already is an admin.");
         } else {
-            Main.data.addAdmin(playerName);
+            PersistentData.getInstance().addAdmin(playerName);
             commandSender.sendMessage(HADES + ChatColor.BLUE + "Added \"" + playerName + "\" to the admins.");
         }
         return true;

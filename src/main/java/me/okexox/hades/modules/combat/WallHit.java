@@ -40,7 +40,7 @@ public class WallHit extends Detection implements CheckCombat {
         while(getBlocks.hasNext()) {
             Block block = getBlocks.next();
             if(solid.contains(block.getType())) {
-                flag((Player)e.getDamager(), block.getType().toString());
+                flag(e, (Player)e.getDamager(), block.getType().toString());
             }
         }
     }

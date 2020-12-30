@@ -17,7 +17,7 @@ public class CombatNoSwing extends Detection implements CheckCombat {
     @Override
     public void check(EntityDamageByEntityEvent e, PlayerData data) {
         if(!data.isArmSwung()) {
-            flag((Player)e.getDamager());
+            flag(e, (Player)e.getDamager());
         }
         data.setArmSwung(false);
     }

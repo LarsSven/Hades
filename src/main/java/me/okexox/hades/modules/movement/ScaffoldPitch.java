@@ -6,15 +6,17 @@ import me.okexox.hades.modules.base.Detection;
 import me.okexox.hades.modules.base.DetectionType;
 import me.okexox.hades.modules.base.FlagType;
 import me.okexox.hades.modules.base.interfaces.CheckBlockPlace;
+import me.okexox.hades.modules.base.interfaces.CheckMove;
 import me.okexox.hades.utility.BasicFunctions;
 import org.bukkit.Location;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
 
 import static me.okexox.hades.utility.BasicFunctions.round;
 
-public class ScaffoldPitch extends Detection implements CheckBlockPlace {
+public class ScaffoldPitch extends Detection implements CheckBlockPlace, CheckMove {
     public ScaffoldPitch() {
-        super("ScaffoldPitch", FlagType.Experimental, DetectionType.Movement);
+        super("ScaffoldPitch", FlagType.Ban, DetectionType.Movement);
     }
 
     @Override
@@ -24,32 +26,25 @@ public class ScaffoldPitch extends Detection implements CheckBlockPlace {
         }
         Location blockLoc = e.getBlockAgainst().getLocation().clone();
         Location aimLoc = e.getPlayer().getEyeLocation();
-        //Correct y
-        if(e.getBlock().getY() > blockLoc.getY()) { //Placed on a block below
-            blockLoc.setY(blockLoc.getY()+1);
-        } else if(e.getBlock().getY() == blockLoc.getY()) { //Placed on a one of the 4 vertical sides
-            blockLoc.setY(blockLoc.getY()+0.5);
-        }
-        //Correct Z
-        if(e.getBlock().getZ() > blockLoc.getZ()) {
-            blockLoc.setZ(blockLoc.getZ()+1);
-        } else if(e.getBlock().getZ() == blockLoc.getZ()) {
-            blockLoc.setZ(blockLoc.getZ()+0.5);
-        }
-        //Correct X
-        if(e.getBlock().getX() > blockLoc.getX()) {
-            blockLoc.setX(blockLoc.getX()+1);
-        } else if(e.getBlock().getX() == blockLoc.getX()) {
-            blockLoc.setX(blockLoc.getX()+0.5);
-        }
+        BasicFunctions.correctBlocks(e.getBlock().getLocation(), blockLoc);
 
-        double yDiff = blockLoc.getY()-aimLoc.getY();
-        double xDiff = BasicFunctions.getHorizontalDistance(blockLoc, aimLoc);
-        double expectedPitch = Math.atan2(yDiff, xDiff) * (180/Math.PI);
-        double actualPitch = -e.getPlayer().getLocation().getPitch(); //Pitch is the other way around in mc
+        double vDiff = blockLoc.getY()-aimLoc.getY();
+        double hDiff = BasicFunctions.getHorizontalDistance(blockLoc, aimLoc);
+        double expectedPitch = Math.atan2(vDiff, hDiff) * (180/Math.PI);
+        data.setScaffoldPitchFlag(expectedPitch);
+    }
+
+    @Override
+    public void check(PlayerMoveEvent e, PlayerData data) {
+        double expectedPitch = data.getScaffoldPitchFlag();
+        if(expectedPitch == -180) {
+            return;
+        }
+        double actualPitch = -e.getTo().getPitch();
         double pitchDiff = Math.abs(expectedPitch-actualPitch);
         if(pitchDiff > 15) {
-            flag(e.getPlayer(), "ePitch=" + round(expectedPitch) + " aPitch=" + round(actualPitch) + " pitchDiff=" + round(pitchDiff));
+            flag(e, e.getPlayer(), "ePitch=" + round(expectedPitch) + " aPitch=" + round(actualPitch) + " pitchDiff=" + round(pitchDiff));
         }
+        data.setScaffoldPitchFlag(-180);
     }
 }

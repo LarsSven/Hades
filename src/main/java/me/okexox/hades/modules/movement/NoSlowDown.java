@@ -11,6 +11,8 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerMoveEvent;
 
+import static me.okexox.hades.utility.BasicFunctions.round;
+
 public class NoSlowDown extends Detection implements CheckMove {
     public NoSlowDown() {
         super("NoSlowDown", FlagType.Ban, DetectionType.Movement);
@@ -22,7 +24,8 @@ public class NoSlowDown extends Detection implements CheckMove {
         if(!data.isSlowedDown()
             || !data.slowdownTransitioned()
             || player.isInsideVehicle()
-            || data.wasNearSlimeBlock()) {
+            || data.wasNearSlimeBlock()
+            || data.inCombat()) {
             return;
         }
 
@@ -39,7 +42,7 @@ public class NoSlowDown extends Detection implements CheckMove {
         }
         double speed = BasicFunctions.getHorizontalDistance(e.getTo(), e.getFrom());
         if(speed > maxSpeed) {
-            flag(player, "Speed=" + speed);
+            flag(e, player, "Speed=" + round(speed));
         }
     }
 }

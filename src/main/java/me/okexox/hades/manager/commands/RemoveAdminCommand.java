@@ -1,6 +1,7 @@
 package me.okexox.hades.manager.commands;
 
 import me.okexox.hades.Main;
+import me.okexox.hades.data.PersistentData;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -23,10 +24,10 @@ public class RemoveAdminCommand implements CommandExecutor {
             commandSender.sendMessage(HADES + ChatColor.BLUE + "No player with the name \"" + strings[0] + "\" is known.");
             return true;
         }
-        if(!Main.data.getAdmins().contains(playerName)) {
+        if(!PersistentData.getInstance().getAdmins().contains(playerName)) {
             commandSender.sendMessage(HADES + ChatColor.BLUE + "\"" + playerName + "\" is not an admin.");
         } else {
-            Main.data.removeAdmin(playerName);
+            PersistentData.getInstance().removeAdmin(playerName);
             commandSender.sendMessage(HADES + ChatColor.BLUE + "Removed \"" + playerName + "\" from the admins.");
         }
         return true;

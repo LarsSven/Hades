@@ -4,6 +4,8 @@ import me.okexox.hades.data.ServerData;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.block.Block;
+import org.bukkit.event.Event;
+import org.bukkit.event.block.BlockPlaceEvent;
 
 import static me.okexox.hades.utility.Settings.GCD;
 
@@ -109,5 +111,31 @@ public class BasicFunctions {
         newLoc.setY(newLoc.getY()-1);
         boolean belowAllAir = BasicFunctions.checkAllBlockAround(newLoc, 0);
         return isValidPos && (!currentAllAir || !belowAllAir);
+    }
+
+    /**
+     * Makes the coordinates as close to the coordinates the player clicked on as can be predicted without raytracing
+     * @param newBlock The location of the newly placed block
+     * @param placedAgainst The location of the block it was placed against
+     */
+    public static void correctBlocks(Location newBlock, Location placedAgainst) {
+        //Correct y
+        if(newBlock.getY() > placedAgainst.getY()) { //Placed on a block below
+            placedAgainst.setY(placedAgainst.getY()+1);
+        } else if(newBlock.getY() == placedAgainst.getY()) { //Placed on a one of the 4 vertical sides
+            placedAgainst.setY(placedAgainst.getY()+0.5);
+        }
+        //Correct Z
+        if(newBlock.getZ() > placedAgainst.getZ()) {
+            placedAgainst.setZ(placedAgainst.getZ()+1);
+        } else if(newBlock.getZ() == placedAgainst.getZ()) {
+            placedAgainst.setZ(placedAgainst.getZ()+0.5);
+        }
+        //Correct X
+        if(newBlock.getX() > placedAgainst.getX()) {
+            placedAgainst.setX(placedAgainst.getX()+1);
+        } else if(newBlock.getX() == placedAgainst.getX()) {
+            placedAgainst.setX(placedAgainst.getX()+0.5);
+        }
     }
 }

@@ -1,6 +1,7 @@
 package me.okexox.hades.manager.commands;
 
 import me.okexox.hades.Main;
+import me.okexox.hades.data.PersistentData;
 import me.okexox.hades.modules.base.Detection;
 import me.okexox.hades.modules.base.DetectionType;
 import org.bukkit.ChatColor;
@@ -16,7 +17,7 @@ public class DetectionsCommand implements CommandExecutor {
         int count = 1;
         DetectionType lastType = DetectionType.Combat;
         message.append(ChatColor.DARK_GREEN + "---").append(lastType).append("---\n");
-        for(Detection check : Main.data.getChecks()) {
+        for(Detection check : PersistentData.getInstance().getChecks()) {
             if(check.getDetectionType() != lastType) { //Detections are inserted into the list in a way so that all types are grouped together
                 message.append(ChatColor.DARK_GREEN + "---").append(check.getDetectionType()).append("---\n");
                 lastType = check.getDetectionType();

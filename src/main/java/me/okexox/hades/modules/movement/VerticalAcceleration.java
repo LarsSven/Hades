@@ -32,7 +32,7 @@ public class VerticalAcceleration extends Detection implements CheckMove {
         }
 
         if(data.getLastVerticalSpeed() < vSpeed && data.getLastVerticalSpeed() > 0) {
-            flag(e.getPlayer(), "Last=" + BasicFunctions.round(data.getLastVerticalSpeed()) + " Now=" + BasicFunctions.round(vSpeed));
+            flag(e, e.getPlayer(), "Last=" + BasicFunctions.round(data.getLastVerticalSpeed()) + " Now=" + BasicFunctions.round(vSpeed));
         }
 
         data.setLastVerticalSpeed(vSpeed);

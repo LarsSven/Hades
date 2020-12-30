@@ -53,6 +53,12 @@ public class PlayerData {
     //A block place swing animation comes after the block place
     //Set to true when swinging, and false when placing a block. As such, this should always be true when you place a block.
     private boolean maintainsBlockSwing = true;
+    //Jesus needs to check the next move due to a move delay of the onGround
+    private boolean isJesusFlagged = false;
+    //Need to use the pitch of the move after the blockplace, so need to store the expected value for the next move, -180 means that it doesn't need to check.
+    private double scaffoldPitchFlag = -180;
+    //Need to use the yaw of the move after the blockplace, so need to store the expected value for the next move, -1 means that it doesn't need to check.
+    private double scaffoldYawFlag = -1;
 
 
     public int getSpeed() {
@@ -285,5 +291,29 @@ public class PlayerData {
 
     public void setBlockSwing(boolean maintainsBlockSwing) {
         this.maintainsBlockSwing = maintainsBlockSwing;
+    }
+
+    public boolean isJesusFlagged() {
+        return isJesusFlagged;
+    }
+
+    public void setJesusFlagged(boolean jesusFlagged) {
+        isJesusFlagged = jesusFlagged;
+    }
+
+    public double getScaffoldPitchFlag() {
+        return scaffoldPitchFlag;
+    }
+
+    public void setScaffoldPitchFlag(double scaffoldPitchFlag) {
+        this.scaffoldPitchFlag = scaffoldPitchFlag;
+    }
+
+    public double getScaffoldYawFlag() {
+        return scaffoldYawFlag;
+    }
+
+    public void setScaffoldYawFlag(double scaffoldYawFlag) {
+        this.scaffoldYawFlag = scaffoldYawFlag;
     }
 }
