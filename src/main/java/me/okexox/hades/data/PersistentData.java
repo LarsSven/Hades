@@ -4,6 +4,7 @@ import me.okexox.hades.modules.base.Detection;
 import me.okexox.hades.modules.combat.CombatNoSwing;
 import me.okexox.hades.modules.combat.WallHit;
 import me.okexox.hades.modules.exploits.FastHeal;
+import me.okexox.hades.modules.exploits.NoWeb;
 import me.okexox.hades.modules.exploits.Nuker;
 import me.okexox.hades.modules.exploits.SelfDamage;
 import me.okexox.hades.modules.integrity.CanFlyIntegrity;
@@ -66,6 +67,7 @@ public class PersistentData implements Serializable {
         checks.add(new ScaffoldYaw());
         checks.add(new BlockNoSwing());
         checks.add(new ScaffoldBlockFace());
+        checks.add(new NoWeb());
     }
 
     private void addScaffoldBlocks() {

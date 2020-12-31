@@ -9,5 +9,6 @@ public class Settings {
     public static final double ONGROUND_SLOWDOWN_SPEED = 0.18;
     public static final double OFFGROUND_SLOWDOWN_SPEED = 0.46;
     public static final double OFFGROUND_SNEAKING_SLOWDOWN_SPEED = 0.5;
+    public static final double COB_SPEED = 0.15;
     public static final double GCD = 1/64.;
 }
