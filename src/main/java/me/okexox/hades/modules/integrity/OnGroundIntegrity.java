@@ -16,7 +16,7 @@ import static me.okexox.hades.utility.Settings.GCD;
 
 public class OnGroundIntegrity extends Detection implements CheckMove {
     public OnGroundIntegrity() {
-        super("OnGroundIntegrity", FlagType.Experimental, DetectionType.Integrity);
+        super("OnGroundIntegrity", FlagType.Ban, DetectionType.Integrity);
     }
 
     public void check(PlayerMoveEvent e, PlayerData data) {

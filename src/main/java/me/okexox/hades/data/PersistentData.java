@@ -65,6 +65,7 @@ public class PersistentData implements Serializable {
         checks.add(new ScaffoldPitch());
         checks.add(new ScaffoldYaw());
         checks.add(new BlockNoSwing());
+        checks.add(new ScaffoldBlockFace());
     }
 
     private void addScaffoldBlocks() {

@@ -38,9 +38,22 @@ public class ScaffoldYaw extends Detection implements CheckBlockPlace, CheckMove
         double zDiff = blockLoc.getZ()-aimLoc.getZ();
         double expectedYaw = -Math.atan2(xDiff,zDiff)  * (180/Math.PI);
         double normalizedEYaw = (expectedYaw < 0) ? expectedYaw + 360 : expectedYaw;
-        data.setScaffoldYawFlag(normalizedEYaw);
+        double actualYaw = e.getPlayer().getLocation().getYaw();
+        double correctedYaw = actualYaw % 360;
+        double normalizedAYaw = (correctedYaw < 0) ? correctedYaw + 360 : correctedYaw;
+        double yaw1 = Math.abs(normalizedAYaw - normalizedEYaw);
+        double yaw2 = Math.abs(yaw1-360);
+        double yawDiff = Math.min(yaw1, yaw2);
+        if(yawDiff > 30) {
+            data.setScaffoldYawFlag(normalizedEYaw);
+        }
     }
 
+    /**
+     * I want to check it a second time for the next move, as extreme yaw motion can false flag the first check
+     * @param e The Move event
+     * @param data The data of the player that is getting checked
+     */
     @Override
     public void check(PlayerMoveEvent e, PlayerData data) {
         if(data.getScaffoldYawFlag() == -1) {

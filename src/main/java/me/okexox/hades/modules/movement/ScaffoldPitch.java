@@ -31,9 +31,18 @@ public class ScaffoldPitch extends Detection implements CheckBlockPlace, CheckMo
         double vDiff = blockLoc.getY()-aimLoc.getY();
         double hDiff = BasicFunctions.getHorizontalDistance(blockLoc, aimLoc);
         double expectedPitch = Math.atan2(vDiff, hDiff) * (180/Math.PI);
-        data.setScaffoldPitchFlag(expectedPitch);
+        double actualPitch = -e.getPlayer().getLocation().getPitch();
+        double pitchDiff = Math.abs(expectedPitch-actualPitch);
+        if(pitchDiff > 12) { //Can be quite sensitive as this is very accurate on low head movement. Generally low on hacked clients (around 14)
+            data.setScaffoldPitchFlag(expectedPitch);
+        }
     }
 
+    /**
+     * I want to check it a second time for the next move, as extreme pitch motion can false flag the first check
+     * @param e The Move event
+     * @param data The data of the player that is getting checked
+     */
     @Override
     public void check(PlayerMoveEvent e, PlayerData data) {
         double expectedPitch = data.getScaffoldPitchFlag();
@@ -42,7 +51,7 @@ public class ScaffoldPitch extends Detection implements CheckBlockPlace, CheckMo
         }
         double actualPitch = -e.getTo().getPitch();
         double pitchDiff = Math.abs(expectedPitch-actualPitch);
-        if(pitchDiff > 15) {
+        if(pitchDiff > 24) { //Much less sensitive. Catches all quick head movement, but this one is generally high on hacked client's scaffolds.
             flag(e, e.getPlayer(), "ePitch=" + round(expectedPitch) + " aPitch=" + round(actualPitch) + " pitchDiff=" + round(pitchDiff));
         }
         data.setScaffoldPitchFlag(-180);
