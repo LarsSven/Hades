@@ -58,6 +58,13 @@ public class MoveEvent implements Listener {
         for(CheckMove check : checks) {
             check.check(e, data);
         }
+
+        updateMovementAfter(e, data);
+    }
+
+    private void updateMovementAfter(PlayerMoveEvent e, PlayerData data) {
+        double yDiff = e.getTo().getY() - e.getFrom().getY();
+        data.setLastYMotion(yDiff);
     }
 
     private void updateMovementBefore(PlayerMoveEvent e, PlayerData data) {

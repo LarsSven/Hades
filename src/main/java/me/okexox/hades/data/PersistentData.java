@@ -49,6 +49,7 @@ public class PersistentData implements Serializable {
         checks.add(new FastHeal());
         checks.add(new Nuker());
         checks.add(new SelfDamage());
+        checks.add(new NoWeb());
         //Integrity
         checks.add(new OnGroundIntegrity());
         checks.add(new PitchIntegrity());
@@ -67,8 +68,8 @@ public class PersistentData implements Serializable {
         checks.add(new ScaffoldYaw());
         checks.add(new BlockNoSwing());
         checks.add(new ScaffoldBlockFace());
-        checks.add(new NoWeb());
-        checks.add(new ExpectedJump());
+        checks.add(new UnexpectedJumpPhysics());
+        checks.add(new UnexpectedJumpVelocity());
     }
 
     private void addScaffoldBlocks() {

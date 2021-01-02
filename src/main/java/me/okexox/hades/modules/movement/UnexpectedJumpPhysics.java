@@ -12,13 +12,14 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerMoveEvent;
 
 import static me.okexox.hades.utility.BasicFunctions.round;
+import static me.okexox.hades.utility.Settings.GCD;
 
 /**
  * Checks whether air movements follow the expected physics of a jump
  */
-public class ExpectedJump extends Detection implements CheckMove {
-    public ExpectedJump() {
-        super("ExpectedJump", FlagType.Experimental, DetectionType.Movement);
+public class UnexpectedJumpPhysics extends Detection implements CheckMove {
+    public UnexpectedJumpPhysics() {
+        super("UnexpectedJumpPhysics", FlagType.Ban, DetectionType.Movement);
     }
 
     @Override
@@ -35,15 +36,17 @@ public class ExpectedJump extends Detection implements CheckMove {
            || data.wasSwimming()
            || !BasicFunctions.pistonSafety()
            || player.isInsideVehicle()
+           || e.getTo().getY() % GCD == 0
         ) {
-            data.setLastYMotion(yDifference);
+            return;
+        }
+        if(Math.abs(yDifference-0.42) < 0.00001) {
             return;
         }
 
         Location loc = player.getLocation().clone();
         loc.setY(loc.getY() + 2);
         if(!BasicFunctions.checkAllBlockAround(loc, 0)) { //Block above a player's head
-            data.setLastYMotion(yDifference);
             return;
         }
 
@@ -53,9 +56,8 @@ public class ExpectedJump extends Detection implements CheckMove {
             expectedMotion = (data.getLastYMotion() - 0.08) * 0.98; //0.08 is the gravity, and 0.98 is the drag
             double diff = Math.abs(yDifference - expectedMotion);
             if(diff > 0.0000001) {
-                flag(e, player, "expected=" + round(expectedMotion) + " actual=" + round(yDifference) + " diff=" + round(diff) + " last=" + lastMotion);
+                flag(e, player, "expected=" + round(expectedMotion) + " actual=" + round(yDifference) + " diff=" + round(diff) + " last=" + round(lastMotion));
             }
         }
-        data.setLastYMotion(yDifference);
     }
 }
