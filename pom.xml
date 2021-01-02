@@ -10,7 +10,6 @@
 
     <build>
         <plugins>
-            <!-- Maven Compiler Plugin allows custom compiler configuration -->
             <plugin>
                 <groupId>       org.apache.maven.plugins    </groupId>
                 <artifactId>    maven-compiler-plugin       </artifactId>
@@ -19,14 +18,12 @@
                     <source>8</source>
                     <target>8</target>
                     <encoding>  ${project.build.sourceEncoding} </encoding>
-                    <!-- If you need compiler flags, add them here -->
                     <compilerArgs>
                         <arg>   -Xlint:unchecked    </arg>
                     </compilerArgs>
                 </configuration>
             </plugin>
 
-            <!-- Generates code coverage report on build target execution -->
             <plugin>
                 <groupId>       org.jacoco          </groupId>
                 <artifactId>    jacoco-maven-plugin </artifactId>
@@ -51,7 +48,6 @@
 
     <reporting>
         <plugins>
-            <!-- Enable maven to generate javadoc -->
             <plugin>
                 <groupId>       org.apache.maven.plugins    </groupId>
                 <artifactId>    maven-javadoc-plugin        </artifactId>
@@ -85,6 +81,12 @@
             <groupId>com.comphenix.protocol</groupId>
             <artifactId>ProtocolLib</artifactId>
             <version>4.5.0</version>
+        </dependency>
+	    <dependency>
+            <groupId>org.bukkit</groupId>
+            <artifactId>craftbukkit</artifactId>
+            <version>1.8.8-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 

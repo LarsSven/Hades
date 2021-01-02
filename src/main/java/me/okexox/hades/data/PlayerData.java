@@ -60,9 +60,8 @@ public class PlayerData {
     private double scaffoldPitchFlag = -180;
     //Need to use the yaw of the move after the blockplace, so need to store the expected value for the next move, -1 means that it doesn't need to check.
     private double scaffoldYawFlag = -1;
-    //Used for checking the BlockFace on the move after a place. null means that there was no blockface before.
-    private Vector blockDifference = null;
-    private Vector blockAgainst = null;
+    //Check horizontal distance a tick later due to the onground delay
+    private double hDistance = -1;
 
 
 
@@ -322,19 +321,11 @@ public class PlayerData {
         this.scaffoldYawFlag = scaffoldYawFlag;
     }
 
-    public Vector getBlockDifference() {
-        return blockDifference;
+    public double gethDistance() {
+        return hDistance;
     }
 
-    public void setBlockDifference(Vector blockDifference) {
-        this.blockDifference = blockDifference;
-    }
-
-    public Vector getBlockAgainst() {
-        return blockAgainst;
-    }
-
-    public void setBlockAgainst(Vector blockAgainst) {
-        this.blockAgainst = blockAgainst;
+    public void sethDistance(double hDistance) {
+        this.hDistance = hDistance;
     }
 }
