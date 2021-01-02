@@ -71,6 +71,9 @@ public class MoveEvent implements Listener {
         Player player = e.getPlayer();
         data.setEdgeTeleport(BasicFunctions.edgeTeleport(e.getTo()));
         data.setOnGround(player.isOnGround());
+        Location checkLoc = e.getPlayer().getLocation();
+        checkLoc.setY(checkLoc.getY()-1);
+        data.setNoFloorTicks(!BasicFunctions.checkAllBlockAround(checkLoc, 0));
         data.setFlewRecently(player.isFlying());
         data.updateSwimming(BasicFunctions.isSwimming(player.getLocation()));
         if(player.isOnGround()) {

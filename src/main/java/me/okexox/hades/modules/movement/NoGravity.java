@@ -23,13 +23,14 @@ public class NoGravity extends Detection implements CheckMove {
         if(data.flewRecently()
             || player.isInsideVehicle()
             || !BasicFunctions.checkAllBlockAround(e.getPlayer().getLocation(), 0)
+            || data.getNoFloorTicks() < 3
         ) {
             data.setyDiff(difference);
             return;
         }
         Location loc = e.getPlayer().getLocation().clone();
         loc.setY(loc.getY()-1);
-        if(BasicFunctions.checkAllBlockAround(loc, 0) && difference == 0 && data.getyDiff() == 0) {
+        if(data.getNoFloorTicks() > 4 && difference == 0 && data.getyDiff() == 0) {
             flag(e, player, "yDif=" + difference + " y=" + round(e.getTo().getY()));
         }
         data.setyDiff(difference);

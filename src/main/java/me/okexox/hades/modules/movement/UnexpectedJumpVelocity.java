@@ -20,6 +20,7 @@ public class UnexpectedJumpVelocity extends Detection implements CheckMove {
             || data.wasSwimming()
             || data.isFlying()
             || e.getTo().getY() % GCD == 0
+            || data.inCombat()
         ) {
             return;
         }

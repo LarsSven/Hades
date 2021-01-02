@@ -62,6 +62,8 @@ public class PlayerData {
     private double hDistance = -1;
     //Used by the ExpectedJump
     private double lastYMotion = 0;
+    //The amount of ticks that a player has not had blocks under them
+    private int noFloorTicks = 0;
 
 
 
@@ -323,5 +325,17 @@ public class PlayerData {
 
     public void setLastYMotion(double lastYMotion) {
         this.lastYMotion = lastYMotion;
+    }
+
+    public int getNoFloorTicks() {
+        return noFloorTicks;
+    }
+
+    public void setNoFloorTicks(boolean isFloor) {
+        if(isFloor) {
+            noFloorTicks = 0;
+        } else {
+            noFloorTicks++;
+        }
     }
 }

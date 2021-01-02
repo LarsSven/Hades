@@ -49,7 +49,6 @@ public class UnexpectedJumpPhysics extends Detection implements CheckMove {
         if(!BasicFunctions.checkAllBlockAround(loc, 0)) { //Block above a player's head
             return;
         }
-
         double expectedMotion;
         double lastMotion = data.getLastYMotion();
         if(lastMotion != 0 && yDifference != 0) {
