@@ -36,7 +36,9 @@ public class OnGroundIntegrity extends Detection implements CheckMove {
         Location loc = e.getPlayer().getLocation(); //Is cloned at the getter already
         loc.setY(loc.getY()-1);
         if(!BasicFunctions.checkAllBlockAround(loc, 0)
-           || data.getBoatNearby()) {
+           || data.getBoatNearby()
+           || !BasicFunctions.pistonSafety()
+        ) {
             return;
         }
 

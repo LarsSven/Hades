@@ -41,8 +41,6 @@ public class PlayerData {
     private int onGroundMoves = 0;
     //The y difference in the previous move
     private double lastVerticalSpeed = 0;
-    //Whether the player is near any stairs or slabs
-    private int wasNearStairsOrSlabs = 0;
     //Checks whether the player was recently in flying mode
     private int flewRecently = 0;
     //Stores if arm was swung
@@ -62,6 +60,8 @@ public class PlayerData {
     private double scaffoldYawFlag = -1;
     //Check horizontal distance a tick later due to the onground delay
     private double hDistance = -1;
+    //Used by the ExpectedJump
+    private double lastYMotion = 0;
 
 
 
@@ -241,18 +241,6 @@ public class PlayerData {
         this.lastVerticalSpeed = lastVerticalSpeed;
     }
 
-    public boolean wasNearStairsOrSlabs() {
-        return (wasNearStairsOrSlabs > 0);
-    }
-
-    public void setNearStairsOrSlabs(boolean near) {
-        if(near) {
-            wasNearStairsOrSlabs = 3;
-        } else if(wasNearStairsOrSlabs > 0) {
-            wasNearStairsOrSlabs--;
-        }
-    }
-
     public void setFlewRecently(boolean isFlying) {
         if(isFlying) {
             flewRecently = 5;
@@ -327,5 +315,13 @@ public class PlayerData {
 
     public void sethDistance(double hDistance) {
         this.hDistance = hDistance;
+    }
+
+    public double getLastYMotion() {
+        return lastYMotion;
+    }
+
+    public void setLastYMotion(double lastYMotion) {
+        this.lastYMotion = lastYMotion;
     }
 }

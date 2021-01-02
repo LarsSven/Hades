@@ -2,7 +2,7 @@ package me.okexox.hades.utility;
 
 public class Settings {
     public static final double MAX_OFFGROUND_HSPEED = 1.15;
-    public static final double MAX_ONGROUND_HSPEED = 0.3;
+    public static final double MAX_ONGROUND_HSPEED = 0.35;
     public static final double MAX_VERTICAL_BASE = 0.41999998688697815;
     public static final double MAX_VERTICAL_WATERFLY = 0.5;
     public static final int MAX_JUMP_TIME = 6;

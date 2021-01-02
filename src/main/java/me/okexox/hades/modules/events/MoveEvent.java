@@ -63,9 +63,9 @@ public class MoveEvent implements Listener {
     private void updateMovementBefore(PlayerMoveEvent e, PlayerData data) {
         Player player = e.getPlayer();
         data.setEdgeTeleport(BasicFunctions.edgeTeleport(e.getTo()));
-        data.setNearStairsOrSlabs(isNearStairs(e.getPlayer().getLocation()));
         data.setOnGround(player.isOnGround());
         data.setFlewRecently(player.isFlying());
+        data.updateSwimming(BasicFunctions.isSwimming(player.getLocation()));
         if(player.isOnGround()) {
             data.setBadJump(false);
         }
@@ -84,24 +84,5 @@ public class MoveEvent implements Listener {
         }
         data.updateSpeed(0);
         data.updateFly(player.isFlying());
-    }
-
-    private boolean isNearStairs(final Location loc) {
-        for(float x = -0.5f; x <= 0.5f; x += 0.5f) {
-            for(float z = -0.5f; z <= 0.5f; z += 0.5f) {
-                for(int y = -1; y <= 0; y++) {
-                    Location newLoc = loc.clone();
-                    newLoc.setZ(loc.getZ()+z);
-                    newLoc.setX(loc.getX()+x);
-                    Block block = newLoc.getWorld().getBlockAt(newLoc);
-                    if(block.getState().getData() instanceof Stairs) {
-                        return true;
-                    } else if(block.getType().equals(Material.STEP) || block.getType().equals(Material.WOOD_STEP)) {
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
     }
 }
